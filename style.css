@@ -1,0 +1,65 @@
+body {
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f0f0f0;
+    margin-top: 20px;
+}
+
+#gameBoard {
+    display: grid;
+    /* Ajusta 'repeat(4, ...)' si quieres más o menos columnas */
+    grid-template-columns: repeat(4, 100px);
+    gap: 10px; /* Espacio entre cartas */
+    margin-top: 20px;
+    /* Evita que el tablero cambie de tamaño bruscamente */
+    perspective: 1000px;
+}
+
+.card {
+    width: 100px;
+    height: 100px;
+    background-color: #4477cc; /* Color boca abajo */
+    border: 2px solid #333;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0; /* Oculta el símbolo inicialmente */
+    color: #333; /* Color del símbolo cuando se muestre */
+    cursor: pointer;
+    position: relative; /* Necesario para el efecto de volteo si se usa */
+    transition: transform 0.6s, background-color 0.3s;
+    transform-style: preserve-3d; /* Para efecto 3D si se implementa */
+    user-select: none; /* Evita seleccionar el texto del emoji */
+}
+
+.card.flipped {
+    background-color: #fff; /* Color boca arriba */
+    font-size: 40px; /* Muestra el símbolo */
+    /* Efecto de volteo simple (puedes comentarlo si prefieres sin animación) */
+    transform: rotateY(180deg);
+}
+
+.card.matched {
+    background-color: #90ee90; /* Verde claro para indicar pareja */
+    border-color: #55a555;
+    cursor: default;
+    opacity: 0.7; /* Un poco transparente */
+    transform: rotateY(0deg); /* Asegura que se vea bien si se volteó */
+    font-size: 40px; /* Asegura que el símbolo siga visible */
+}
+
+#status {
+    margin-top: 15px;
+    font-size: 1.1em;
+    min-height: 1.5em; /* Evita que el layout salte */
+}
+
+#resetButton {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+}
